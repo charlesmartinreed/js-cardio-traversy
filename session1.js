@@ -1,32 +1,34 @@
-// // CHALLENGE 5: MAX CHARACTER
-// // Return the character that is most common in a string
-// // ex: maxCharacter('javascript') == 'a'
+// Challenge 6: FIZZBUZZ
+// Print all numbers from 1 - 100. For multiples of 3, instead of number, print 'Fizz', multiples of 5, print 'Buzz', multiples of 3 and 5 print 'FizzBuzz'
 
-// using hash maps
-
-// function maxCharacter(str) {
-//   const charMap = {};
-//   let maxChar = "";
-//   let maxNum = 0;
-//
-//   str
-//     .toLowerCase()
-//     .split("")
-//     .forEach(char => {
-//       if (charMap[char]) {
-//         charMap[char] += 1;
-//       } else {
-//         charMap[char] = 1;
-//       }
-//     });
-//
-//   // return the highest value using a for-in loop
-//   // think for (let key in object)...
-//   for (let char in charMap) {
-//     if (charMap[char] > maxNum) {
-//       maxNum = charMap[char];
-//       maxChar = char;
+// function FizzBuzz() {
+//   for (let i = 0; i <= 100; i++) {
+//     if (i % 3 === 0 && i % 5 === 0) {
+//       console.log("FizzBuzz");
+//     } else if (i % 3 === 0) {
+//       console.log("Fizz");
+//     } else if (i % 5 === 0) {
+//       console.log("Buzz");
+//     } else {
+//       console.log(i);
 //     }
 //   }
-//   return maxChar;
 // }
+
+function FizzUpTo(start, end) {
+  if (parseInt(start) && parseInt(end)) {
+    for (let i = start; i <= end; i++) {
+      if (i % 3 === 0 && i % 5 === 0) {
+        console.log("FizzBuzz");
+      } else if (i % 3 === 0) {
+        console.log("Fizz");
+      } else if (i % 5 === 0) {
+        console.log("Buzz");
+      } else {
+        console.log(i);
+      }
+    }
+  } else {
+    console.error("enter numbers only please");
+  }
+}
