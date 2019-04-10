@@ -1,34 +1,36 @@
-// CHALLENGE 3: FLATTEN ARRAY
-// Take array of arrays, flatten to single array
+// CHALLENGE 4: ANAGRAM
+// Two strings passed in, return TRUE if anagram, FALSE if not
 
-// using reduce
-// function flattenArray(arrays) {
-//   return arrays.reduce((a, b) => {
-//     return a.concat(b);
-//   });
+// my basic solution
+// function isAnagram(str1, str2) {
+//   var str1Arr = str1.split("");
+//   var isAnagram = "false";
+//
+//   for (letter of str2) {
+//     // console.log(letter);
+//     if (str1Arr.indexOf(letter) != -1) {
+//       isAnagram = true;
+//     } else {
+//       isAnagram = false;
+//     }
+//   }
+//
+//   return isAnagram;
 // }
 
-// using the built in flat() method
-// function flattenArray(arrays) {
-//   // default deepness of nested array is 1
-//   return arrays.flat();
-// }
-
-// using the apply method
-// function flattenArray(arrays) {
-// 	// apply takes a 'this' and an array of elements
-//   return [].concat.apply([], arrays);
-// }
-
-// using the spread operator
-// allows an iterable to be expanded into multiple args
-// function add(a, b, c) {
-//   return a + b + c;
+// more complicated solution, with helper function sanitizing the string
+// function isAnagram(str1, str2) {
+//   return formatStr(str1) === formatStr(str2);
 // }
 //
-// var arr = [1, 2, 3];
-// add(...arr); //6 - spread allows us to treat the contents of the array as individual args
-
-function flattenArray(arrays) {
-  return [].concat(...arrays);
-}
+// function formatStr(str) {
+//   // strip out anything that isn't a word character (spaces, characters like ! or #, not numbers), replace with empty string
+//   // sort puts it in order from earliest letter to the latest
+//   // join takes our array and gives us a string
+//   return str
+//     .replace(/[^\w]/g, "")
+//     .toLowerCase()
+//     .split("")
+//     .sort()
+//     .join("");
+// }
