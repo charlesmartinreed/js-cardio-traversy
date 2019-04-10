@@ -1,36 +1,61 @@
-// CHALLENGE 4: ANAGRAM
-// Two strings passed in, return TRUE if anagram, FALSE if not
+// CHALLENGE 5: LETTER CHANGES
+// Change every letter of string to the one that follows it and capitalize the vowels - Z becomes A
+// 'hello there' -> 'Ifmmp UIfsf'
 
-// my basic solution
-// function isAnagram(str1, str2) {
-//   var str1Arr = str1.split("");
-//   var isAnagram = "false";
+// my basic, not quite there solution
+// function letterChanges(str) {
+//   // Z is 90
+//   let returnString = "";
+//   let vowels = ["a", "e", "i", "o", "u"];
 //
-//   for (letter of str2) {
-//     // console.log(letter);
-//     if (str1Arr.indexOf(letter) != -1) {
-//       isAnagram = true;
-//     } else {
-//       isAnagram = false;
+//   for (letter of str.toLowerCase()) {
+//     let nextLetter = "";
+//
+//     if (letter === "z") {
+//       letter = "A";
+//     } else if (letter !== "z") {
+//       // increment the unicode number
+//       let unicodeValue = letter.charCodeAt(0);
+//       nextLetter = String.fromCharCode(unicodeValue + 1);
 //     }
-//   }
 //
-//   return isAnagram;
+//     if (vowels.includes(nextLetter)) {
+//       nextLetter = nextLetter.toUpperCase();
+//     }
+//
+//     returnString += nextLetter;
+//   }
+//   return returnString;
 // }
 
-// more complicated solution, with helper function sanitizing the string
-// function isAnagram(str1, str2) {
-//   return formatStr(str1) === formatStr(str2);
-// }
+// much shorter example
+// function letterChanges(str) {
+//   let vowels = ["a", "e", "i", "o", "u"];
 //
-// function formatStr(str) {
-//   // strip out anything that isn't a word character (spaces, characters like ! or #, not numbers), replace with empty string
-//   // sort puts it in order from earliest letter to the latest
-//   // join takes our array and gives us a string
-//   return str
-//     .replace(/[^\w]/g, "")
-//     .toLowerCase()
-//     .split("")
-//     .sort()
-//     .join("");
+//   let newStr = str.toLowerCase().replace(/[a-z]/gi, char => {
+//     let nextLetter = String.fromCharCode(char.charCodeAt() + 1);
+//     if (char === "z") {
+//       return "a";
+//     } else if (vowels.includes(nextLetter)) {
+//       return nextLetter.toUpperCase();
+//     } else {
+//       return nextLetter;
+//     }
+//   });
+//
+//   return newStr;
 // }
+
+// even shorter, using another regExp
+function letterChanges(str) {
+  let newStr = str
+    .toLowerCase()
+    .replace(/[a-z]/gi, char =>
+      char === "Z" ? "a" : String.fromCharCode(char.charCodeAt() + 1)
+    );
+
+  // regExp for vowels
+  newStr = newStr.replace(/a|e|i|o|u/gi, vowel => vowel.toUpperCase());
+
+  return newStr;
+}
