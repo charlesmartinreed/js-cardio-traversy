@@ -1,53 +1,39 @@
-// CHALLENGE 1: LONGEST WORD
-// Return the longest word of a string, if more than one longest word, put into an array
+// CHALLENGE 2: ARRAY CHUNKING
+// SPLIT AN ARRAY INTO CHUNKED ARRAYS of a specific length
 
-// returning just the longest word
-// function longestWord(sen) {
-//   return sen.split(" ").reduce((word, nextWord) => {
-//     if (word.length > nextWord.length) {
-//       return word;
-//     } else if {
-//       return nextWord;
-//     }
-//     return word;
-//   });
-// }
+// using a while loop
+function chunkArray(arr, length) {
+  // init chunked array
+  const chunkedArr = [];
 
-// using the Match method
-// takes in a regExp, returns a filtered expression based
+  // set index
+  let i = 0;
 
-// function longestWord(sen) {
-//   // make sure we only have letters and numbers
-//   const wordArr = sen.toLowerCase().match(/[a-z0-9]+/g);
-//
-//   // sort by length
-//   const sorted = wordArr.sort((word, nextWord) => {
-//     // return word.length - nextWord.length; //ascending
-//     return nextWord.length - word.length; //descending
-//   });
-//
-//   //if multiple words, put into array
-//   const longestWordArr = sorted.filter((word) => {
-//     return word.length === sorted[0].length;
-//   });
-//
-//   let returned =
-//     longestWordArr.length === 1 ? longestWordArr[0] : longestWordArr;
-//
-//   return returned;
-// }
+  // loop while index is less than array length
+  while (i < arr.length) {
+    // push slice onto the chunkedArr and then increment the i by the length
+    chunkedArr.push(arr.slice(i, i + length));
+    i += length;
+  }
 
-// slightly shortened refactor
-function longestWord(sen) {
-  const wordArr = sen.toLowerCase().match(/[a-z0-9]+/g);
+  return chunkedArr;
+}
 
-  const sortedArr = wordArr.sort(
-    (word, nextWord) => nextWord.length - word.length
-  );
+// use a forEach
+function chunkArray(arr, length) {
+  const chunkedArr = [];
 
-  const longestWordArr = sortedArr.filter(
-    word => word.length === sortedArr[0].length
-  );
+  // loop thru arr
+  arr.forEach(val => {
+    // get last element - starts at 'undefined'
+    const last = chunkedArr[chunkedArr.length - 1];
 
-  return longestWordArr === 1 ? longestWordArr[0] : longestWordArr;
+    // check if last, if last length is equal to chunk len
+    if (!last || last.length === length) {
+      chunkedArr.push([val]);
+    } else {
+      last.push(val);
+    }
+  });
+  return chunkedArr;
 }
